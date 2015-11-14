@@ -20,10 +20,13 @@ app.post('/push', function (req, res) {
   res.sendStatus(200);
   var data = req.body;
   var repoName = data.repository.name;
+  var branch = data.ref.split('/')[2];
   console.log("New commit on " + repoName);
   for (var i=0;i<data.commits.length;i++){
   	commit = data.commits[i];
-  	bot.sendMessage(chat, "Repo: " + repoName +"\nID: "+ commit.id + 
+  	bot.sendMessage(chat, "Repo: " + repoName +
+  	"\nBranch: "+ branch + 
+  	"\nID: "+ commit.id + 
   	"\nMessage: " + commit.message + "\nAuthor: " +commit.author.name);
   } 
 });
