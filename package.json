@@ -1,0 +1,16 @@
+{
+  "name": "wikitolearngithubhooksbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "node-telegram-bot-api": "git+https://github.com/yagop/node-telegram-bot-api.git"
+  }
+}
