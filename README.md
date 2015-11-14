@@ -43,5 +43,8 @@ Or you can manually set them.
 	- Make sure you have added the bot to your Telegram Group or as an admin to your Telegram Channel
 
 
+##Running bot docker
+docker run -ti -p "port":"port" -e TELEGRAM_TOKEN="...." -e CHAT='...' -e PORT="port" wikitolearn/telegram-bot:0.1
+	
 ## License
 GPL 
