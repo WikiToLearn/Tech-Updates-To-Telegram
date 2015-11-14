@@ -24,10 +24,11 @@ app.post('/push', function (req, res) {
   console.log("New commit on " + repoName);
   for (var i=0;i<data.commits.length;i++){
   	commit = data.commits[i];
-  	bot.sendMessage(chat, "Repo: " + repoName +
-  	"\nBranch: "+ branch + 
-  	"\nID: "+ commit.id + 
-  	"\nMessage: " + commit.message + "\nAuthor: " +commit.author.name);
+  	bot.sendMessage(chat, "📚 Repo: " + repoName +
+  	"\n⤴ Branch: "+ branch + 
+  	"\n#⃣ ID: "+ commit.id + 
+  	"\n📝 Message: " + commit.message + 
+  	"\n😎 Author: " +commit.author.name);
   } 
 });
 
@@ -37,15 +38,15 @@ app.post('/create', function (req, res) {
   var repoName = data.repository.name;
   var ref_type = data.ref_type;
   var ref = data.ref;
-  if (ref_type='tag'){
+  if (ref_type=='tag'){
       console.log("New tag on " + repoName);
-      bot.sendMessage(chat, "Repo: " + repoName +
-        "\nPushed new TAG: "+ ref); 
+      bot.sendMessage(chat, "📚 Repo: " + repoName +
+        "\n✅ Pushed new TAG: "+ ref); 
   } 
-  if(ref_type='branch'){
+  if(ref_type=='branch'){
       console.log("New branch on" + repoName);
-      bot.sendMessage(chat, "Repo: " + repoName + 
-        "\nPushed new branch: "+ ref);     
+      bot.sendMessage(chat, "📚 Repo: " + repoName + 
+        "\n⤴ Pushed new branch: "+ ref);     
   
   }
   
