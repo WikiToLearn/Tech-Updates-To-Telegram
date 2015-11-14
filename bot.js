@@ -31,6 +31,26 @@ app.post('/push', function (req, res) {
   } 
 });
 
+app.post('/create', function (req, res) {
+  res.sendStatus(200);
+  var data = req.body;
+  var repoName = data.repository.name;
+  var ref_type = data.ref_type;
+  var ref = data.ref;
+  if (ref_type='tag'){
+      console.log("New tag on " + repoName);
+      bot.sendMessage(chat, "Repo: " + repoName +
+        "\nPushed new TAG: "+ ref); 
+  } 
+  if(ref_type='branch'){
+      console.log("New branch on" + repoName);
+      bot.sendMessage(chat, "Repo: " + repoName + 
+        "\nPushed new branch: "+ ref);     
+  
+  }
+  
+});
+
 var server = app.listen(port, function () {
   var host = server.address().address;
   var port = server.address().port;
