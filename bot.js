@@ -10,8 +10,9 @@ app.use(bodyParser.json())
 
 var TelegramBot = require('node-telegram-bot-api');
 
-var token = '';
-var chat = ''
+var token = process.env.TELEGRAM_TOKEN;
+var chat = process.env.CHAT;
+var port = process.env.PORT || 8421;
 var bot = new TelegramBot(token);
 
 
@@ -19,16 +20,15 @@ app.post('/push', function (req, res) {
   res.sendStatus(200);
   var data = req.body;
   var repoName = data.repository.name;
-  var commit_id = data.id;
   console.log("New commit on " + repoName);
   for (var i=0;i<data.commits.length;i++){
   	commit = data.commits[i];
-  	bot.sendMessage(chat, "Repo: " + repoName +"\ID: "+ commit_id+ 
+  	bot.sendMessage(chat, "Repo: " + repoName +"\nID: "+ commit.id + 
   	"\nMessage: " + commit.message + "\nAuthor: " +commit.author.name);
   } 
 });
 
-var server = app.listen(31415, function () {
+var server = app.listen(port, function () {
   var host = server.address().address;
   var port = server.address().port;
 
