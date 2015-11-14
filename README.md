@@ -14,7 +14,7 @@ Simple script to automatically post GitHub commits to a Telegram Group or Channe
 - Make sure the machine/newtork running thr script is always reacheable from the outside either by having a static public IP or by a domain name (if you have a dynamic IP look into Dynamic DNS services such as duckdns)
 - Login to GitHub and open the repo you want to receive live updates from
 - Add a new WebHook following this guide https://developer.github.com/webhooks/creating/
-	- Payload URL: http://<yourdomain/staticIP>:8421/push
+	- Payload URL: http://**yourdomain**:8421/push
 	- Content Type: application/json
 	- Events: Just the push event
 	- You can do this for as many repos as you want
