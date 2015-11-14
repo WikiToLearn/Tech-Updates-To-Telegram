@@ -19,14 +19,16 @@ app.post('/push', function (req, res) {
   res.sendStatus(200);
   var data = req.body;
   var repoName = data.repository.name;
+  var commit_id = data.id;
   console.log("New commit on " + repoName);
   for (var i=0;i<data.commits.length;i++){
   	commit = data.commits[i];
-  	bot.sendMessage(chat, "Repo: " + repoName + "\nMessage: " + commit.message + "\nAuthor: " +commit.author.name);
+  	bot.sendMessage(chat, "Repo: " + repoName +"\ID: "+ commit_id+ 
+  	"\nMessage: " + commit.message + "\nAuthor: " +commit.author.name);
   } 
 });
 
-var server = app.listen(8421, function () {
+var server = app.listen(31415, function () {
   var host = server.address().address;
   var port = server.address().port;
 
