@@ -5,7 +5,7 @@ Simple script to automatically post GitHub commits to a Telegram Group or Channe
 ## Setup
 
 - Download/Clone this repo
-- node install
+- npm install
 - Create a Telegram Bot (https://core.telegram.org/bots#botfather)
 	- Set the 'token' variable inside bot.js with the generated token.
 - Add the newly crated bot to your channel/chat (if adding it to a channel add the bot as an administrator)
