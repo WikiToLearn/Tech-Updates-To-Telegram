@@ -15,6 +15,7 @@ var chat = process.env.CHAT;
 var port = process.env.PORT || 8421;
 var bot = new TelegramBot(token);
 
+var gitio = require('gitio');
 
 app.post('/push', function (req, res) {
   res.sendStatus(200);
@@ -24,11 +25,16 @@ app.post('/push', function (req, res) {
   console.log("New commit on " + repoName);
   for (var i=0;i<data.commits.length;i++){
   	commit = data.commits[i];
-  	bot.sendMessage(chat, "📚 Repo: " + repoName +
-  	"\n⤴ Branch: "+ branch + 
-  	"\n#⃣ ID: "+ commit.id + 
-  	"\n📝 Message: " + commit.message + 
-  	"\n😎 Author: " +commit.author.name);
+
+    gitio(commit.url).then(function(shortURL){
+      console.log("Sending message to " + chat);
+      bot.sendMessage(chat, "📚 Repo: " + repoName +
+      "\n⤴ Branch: "+ branch + 
+      "\n#⃣ ID: "+ commit.id + 
+      "\n📝 Message: " + commit.message + 
+      "\n😎 Author: " +commit.author.name + 
+      "\n🌐 URL: " + shortURL );
+    });
   } 
 });
 
