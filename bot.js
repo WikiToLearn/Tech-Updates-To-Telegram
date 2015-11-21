@@ -53,10 +53,20 @@ app.post('/create', function (req, res) {
       console.log("New branch on" + repoName);
       bot.sendMessage(chat, "📚 Repo: " + repoName + 
         "\n⤴ Pushed new branch: "+ ref);     
-  
   }
   
 });
+
+
+app.post('/build', function (req, res) {
+  res.sendStatus(200);
+  var data = req.body;
+  var image = data.image;
+  var tag = data.tag;
+  console.log("Build: " + image + ":" + tag);
+  bot.sendMessage(chat, "*" + image + ":" + tag + "*" + "\n🐳 Docker Build Completed! 🐳", {parse_mode: "Markdown"});
+});
+
 
 var server = app.listen(port, function () {
   var host = server.address().address;
