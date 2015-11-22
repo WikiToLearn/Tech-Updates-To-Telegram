@@ -67,6 +67,14 @@ app.post('/build', function (req, res) {
   bot.sendMessage(chat, "*" + image + ":" + tag + "*" + "\n🐳 Docker Build Completed! 🐳", {parse_mode: "Markdown"});
 });
 
+app.post('/staging', function (req, res) {
+  res.sendStatus(200);
+  var data = req.body;
+  var commit = data.commit
+  var host = data.host
+  console.log("Staging UPDATED\nRunning " + commit.slice(0,7) + " on " + host);
+  bot.sendMessage(chat, "✳️Staging UPDATED✳️\nRunning " + commit.slice(0,7) + " on " + host);
+});
 
 var server = app.listen(port, function () {
   var host = server.address().address;
