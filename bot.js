@@ -22,11 +22,10 @@ app.post('/push', function (req, res) {
   var data = req.body;
   var repoName = data.repository.name;
   var branch = data.ref.split('/')[2];
-  console.log("New commit on " + repoName);
-  for (var i=0;i<data.commits.length;i++){
-  	commit = data.commits[i];
-
+  console.log("New PUSH on " + repoName);
+  data.commits.forEach(function(commit){
     gitio(commit.url).then(function(shortURL){
+      console.log("Commit: " + commit.message);
       console.log("Sending message to " + chat);
       bot.sendMessage(chat, "📚 Repo: " + repoName +
       "\n⤴ Branch: "+ branch + 
@@ -35,7 +34,9 @@ app.post('/push', function (req, res) {
       "\n😎 Author: " +commit.author.name + 
       "\n🌐 URL: " + shortURL );
     });
-  } 
+
+  });
+
 });
 
 app.post('/create', function (req, res) {
