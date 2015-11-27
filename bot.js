@@ -77,9 +77,25 @@ app.post('/staging', function (req, res) {
   bot.sendMessage(chat, "✳️Staging UPDATED✳️\nRunning " + commit.slice(0,7) + " on " + host);
 });
 
+
+app.post('/start', function (req, res) {
+  res.sendStatus(200);
+  var data = req.body;
+  bot.sendMessage(chat, "💻*Starting Bot*💻\nNow running latest version", {parse_mode: "Markdown"});
+});
+
+app.post('/stop', function (req, res) {
+  res.sendStatus(200);
+  bot.sendMessage(chat, "💻*Stopping Bot*💻", {parse_mode: "Markdown"});
+});
+
+
 var server = app.listen(port, function () {
   var host = server.address().address;
   var port = server.address().port;
 
   console.log('Web Service listening at http://%s:%s', host, port);
 });
+
+
+
