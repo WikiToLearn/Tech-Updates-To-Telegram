@@ -1,6 +1,6 @@
-# GitHub Commits to Telegram
+# Tech Updates To Telegram
 
-Simple script to automatically post GitHub commits to a Telegram Group or Channel. 
+Simple script to automatically post WikiToLearn tech updates to a telegram channel. 
 
 ## Setup
 
