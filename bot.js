@@ -12,6 +12,8 @@ var TelegramBot = require('node-telegram-bot-api');
 
 var token = process.env.TELEGRAM_TOKEN;
 var chat = process.env.CHAT;
+var chatPrivate = process.env.CHAT_PRIVATE;
+
 var port = process.env.PORT || 8421;
 var bot = new TelegramBot(token);
 
@@ -71,10 +73,11 @@ app.post('/build', function (req, res) {
 app.post('/staging', function (req, res) {
   res.sendStatus(200);
   var data = req.body;
-  var commit = data.commit
-  var host = data.host
-  console.log("Staging UPDATED\nRunning " + commit.slice(0,7) + " on " + host);
-  bot.sendMessage(chat, "✳️Staging UPDATED✳️\nRunning " + commit.slice(0,7) + " on " + host);
+  var commit = data.commit;
+  var host = data.host;
+  var baseurl = data.baseurl;
+  console.log("Staging UPDATED\nRunning " + commit.slice(0,7) + " on " + host + " (" + baseurl + ")");
+  bot.sendMessage(chat, "✳️Staging UPDATED✳️\nRunning " + commit.slice(0,7) + " on " + host + " (" + baseurl + ")");
 });
 
 
@@ -87,6 +90,18 @@ app.post('/start', function (req, res) {
 app.post('/stop', function (req, res) {
   res.sendStatus(200);
   bot.sendMessage(chat, "💻*Stopping Bot*💻", {parse_mode: "Markdown"});
+});
+
+app.post('/login', function (req, res) {
+  res.sendStatus(200);
+  var data = req.body;
+  var username = data.username;
+  var host = data.host;
+  var ip = "";
+  if(data.ip)
+    ip = "from " + data.ip;
+
+  bot.sendMessage(chatPrivate, "*Login Notification*\n" + username + "@_" + host + "_ " + ip, {parse_mode: "Markdown"});
 });
 
 
