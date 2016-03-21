@@ -12,6 +12,6 @@
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "gitio": "^2.1.1",
-    "node-telegram-bot-api": "git+https://github.com/yagop/node-telegram-bot-api.git"
+    "node-telegram-bot-api": "0.21.1"
   }
 }
