@@ -104,6 +104,14 @@ app.post('/login', function (req, res) {
   bot.sendMessage(chatPrivate, "*Login Notification*\n" + username + "@_" + host + "_ " + ip, {parse_mode: "Markdown"});
 });
 
+app.post('/monitornotify', function (req, res) {
+  res.sendStatus(200);
+  var data = req.body;
+  if(data.msg) {
+    var msg = data.msg;
+    bot.sendMessage(chatPrivate, "Monitoring system:\n" + msg, {parse_mode: "Markdown"});
+  }
+});
 
 var server = app.listen(port, function () {
   var host = server.address().address;
